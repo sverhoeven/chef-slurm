@@ -4,6 +4,7 @@ gem 'berkshelf',          '~> 2.0.10'
 gem 'thor-foodcritic',    '~> 0.2.0'
 
 group :test do
+  gem "chef"
   gem "chefspec"
   gem "rspec-core"
 end
