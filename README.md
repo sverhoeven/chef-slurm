@@ -1,5 +1,7 @@
 # slurm cookbook
 
+[![Build Status](https://travis-ci.org/sverhoeven/chef-slurm.png)](https://travis-ci.org/sverhoeven/chef-slurm)
+
 Cookbook for Slurm resource manager (https://computing.llnl.gov/linux/slurm/slurm.html).
 Can configure controller and computed nodes.
 
