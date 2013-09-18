@@ -1,6 +1,7 @@
+
 #
 # Cookbook Name:: slurm
-# Recipe:: default
+# Recipe:: munge
 #
 # Copyright (C) 2013 Netherlands eScience Center
 # 
@@ -16,20 +17,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "slurm::munge"
-
-package "slurm-llnl" do
-  action :install
-end
-
-# Build slurm.conf based on the template
-template "/etc/slurm-llnl/slurm.conf" do
-    source "slurm.conf.erb"
-    owner "slurm"
-    mode "0755"
-    notifies :restart, "service[slurm-llnl]"
-end
-
-service "slurm-llnl" do
-  action [ :enable, :start ]
-end
+default[:slurm][:control_machine] = node[:hostname]
+default[:slurm][:nodes] = [{
+  :name => node[:hostname],
+  :cpus => node[:cpu][:total]
+}]
+default[:slurm][:partitions] = {
+  :all => {
+    :nodes => [ 
+      node[:hostname] 
+    ],
+    :default => 'YES'
+  }
+}

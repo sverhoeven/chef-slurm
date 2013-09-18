@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: slurm
-# Recipe:: default
+# Recipe:: munge
 #
 # Copyright (C) 2013 Netherlands eScience Center
 # 
@@ -16,20 +16,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "slurm::munge"
 
-package "slurm-llnl" do
+package "munge" do
   action :install
 end
 
-# Build slurm.conf based on the template
-template "/etc/slurm-llnl/slurm.conf" do
-    source "slurm.conf.erb"
-    owner "slurm"
-    mode "0755"
-    notifies :restart, "service[slurm-llnl]"
+# The munge key must be shared between all slurm nodes
+munge_key = Chef::EncryptedDataBagItem.load('slurm', 'munge')[:key]
+
+template "/etc/munge/munge.key" do
+  source "munge.key.erb"
+  owner "munge"
+  mode "0400"
+  variables ({
+    :munge_key => munge_key
+  })
+  notifies :restart, "service[munge]"
 end
 
-service "slurm-llnl" do
+service "munge" do
   action [ :enable, :start ]
 end
+
