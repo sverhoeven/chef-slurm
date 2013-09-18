@@ -41,11 +41,11 @@ See the `attributes/default.rb` for the defaults.
 
 * `node['slurm']['control_machine']` - Hostname of primary controller.
 * `node['slurm']['nodes']` - Array of compute nodes.
-** `node['slurm']['nodes'][<index>]['name']` - Hostname of compute node.
-** `node['slurm']['nodes'][<index>]['cpus']` - Number of cpus of compute node.
+ * `node['slurm']['nodes'][<index>]['name']` - Hostname of compute node.
+ * `node['slurm']['nodes'][<index>]['cpus']` - Number of cpus of compute node.
 * `node['slurm']['partitions]`- Hash of partitions.
-* `node['slurm']['partitions][<partition name>]['nodes']` - Array of compute nodes which are member of this partition.
-* `node['slurm']['partitions][<partition name>]['default']` - String whether partition is default `YES` or `NO`.
+ * `node['slurm']['partitions][<partition name>]['nodes']` - Array of compute nodes which are member of this partition.
+ * `node['slurm']['partitions][<partition name>]['default']` - String whether partition is default `YES` or `NO`.
 
 # Recipes
 
