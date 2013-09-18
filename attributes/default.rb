@@ -1,7 +1,7 @@
 
 #
 # Cookbook Name:: slurm
-# Recipe:: munge
+# Attributes:: default
 #
 # Copyright (C) 2013 Netherlands eScience Center
 # 
