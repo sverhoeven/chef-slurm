@@ -22,7 +22,8 @@ package "munge" do
 end
 
 # The munge key must be shared between all slurm nodes
-munge_key = Chef::EncryptedDataBagItem.load('slurm', 'munge')[:key]
+munge_bag_item = Chef::EncryptedDataBagItem.load('slurm', 'munge')
+munge_key = munge_bag_item["key"]
 
 template "/etc/munge/munge.key" do
   source "munge.key.erb"
