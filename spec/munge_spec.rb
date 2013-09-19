@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'slurm::munge' do
   before do
-    Chef::EncryptedDataBagItem.stub(:load).with('slurm', 'munge').and_return({ :id => 'munge', :key => 'mungesecret'})
+    Chef::EncryptedDataBagItem.stub(:load).with('slurm', 'munge').and_return({ 'id' => 'munge', 'key' => 'mungesecret'})
   end
 
   let(:chef_run) do
